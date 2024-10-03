@@ -14,13 +14,6 @@ class Insert:
         con.commit()
         con.close()
 
-# cur.execute('''DROP TABLE SCRAP''')
-
-# cur.execute('''CREATE TABLE SCRAP
-#          (PRICE         INT(50,2)    NOT NULL,
-#          URL            VARCHAR2(500)     NOT NULL,
-#          DESCRIPTION    VARCHAR2(500));''')
-
 class Select:
     def select():
         con = sqlite3.connect(".\database\database.db")

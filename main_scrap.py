@@ -1,9 +1,7 @@
-import sqlite3
 import requests
 from bs4 import BeautifulSoup
 from db import Insert
 from db import Select
-import time
 
 # URL to scrape (you may need to update this)
 url = "https://www.kijiji.ca/b-house-for-sale/mississauga-peel-region/c35l1700276?sort=dateDesc&radius=5.0&address=Mississauga%2C+ON+L4Z+2Y8&ll=43.5996912%2C-79.6384557"
