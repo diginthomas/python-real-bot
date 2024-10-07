@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from db import Insert
 from db import Select
+import time
 # from db import Drop
 # from db import Create
 
@@ -20,15 +21,12 @@ if response.status_code == 200:
     listings_url = soup.find_all("a", {"data-testid":"listing-link"})
     listings_description = soup.find_all("a", {"class":"sc-24a49435-0 eocwml"})
     listings_image = soup.find_all("img",{"data-testid":"listing-card-image"})
-    listings_date = soup.find("p", {"data-testid": "listing-date"})
-    # time_published = listings_date.text
-    print(listings_date)
 
-    # insert = Insert(listings_price,listings_description,listings_url,listings_image,listings_date)
+    # insert = Insert(listings_price,listings_description,listings_url,listings_image)
     # insert.insert()
     
-    # select = Select
-    # select.select()
+    select = Select
+    select.select()
 
     # drop = Drop("SCRAP")
     # drop.drop()
