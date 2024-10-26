@@ -2,14 +2,17 @@ import requests
 from bs4 import BeautifulSoup
 from db import Insert
 from db import Select
+from bot.commands import location
 # from db import Drop
 # from db import Create
 
 # URL to scrape (you may need to update this)
-url = "https://www.kijiji.ca/b-house-for-sale/mississauga-peel-region/c35l1700276?sort=dateDesc&radius=5.0&address=Mississauga%2C+ON+L4Z+2Y8&ll=43.5996912%2C-79.6384557"
+url = "https://www.kijiji.ca/b-house-for-sale/{location}/c35l1700276?sort=dateDesc&price={min}__{max}"
 
 # Send a GET request to the website
 response = requests.get(url)
+
+print(location)
 
 # Check if request was successful
 if response.status_code == 200:

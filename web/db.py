@@ -43,7 +43,7 @@ class Select:
     def select():
         con = sqlite3.connect(".\database\database.db")
         # Here we can use SELECT or BETWEEN statemet to find the price that the user want? 
-        get_from_table = con.execute("SELECT PRICE,DESCRIPTION,URL,IMAGES,DATE from SCRAP WHERE PRICE >= 999000")
+        get_from_table = con.execute("SELECT PRICE,DESCRIPTION,URL,IMAGES,DATE from SCRAP")
         for row in get_from_table:
             print("PRICE = ", row[0])
             print("DESCRIPTION = ",row[1])
