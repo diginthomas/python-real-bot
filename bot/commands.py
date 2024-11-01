@@ -2,6 +2,9 @@
 from .common import bot
 from web.search import search_with_location_and_budget
 from .gemini import get_gemini_response
+from web.main_scrap import Main
+
+
 # Dictionary to keep track of user state
 user_data = {}
 
@@ -36,6 +39,8 @@ def handle_user_input(message):
         user_info['location'] = message.text
         bot.send_message(chat_id, "Enter your budget:")
         user_info['step'] = 'budget'
+        main = Main(user_data[6461380860]['location'],user_data[6461380860]['step'])
+        main.findList()
 
     elif user_info['step'] == 'budget':
         # Save the budget and perform the search
@@ -49,6 +54,7 @@ def handle_user_input(message):
         # use below function for web scrap
         # search_results = search_with_location_and_budget(location=location, budget=budget)
         bot.delete_message(chat_id,loader_message.id)
+
         if search_results:
             bot.send_message(chat_id, search_results)
         else:
@@ -57,14 +63,14 @@ def handle_user_input(message):
         # Reset the user state
         user_data.pop(chat_id)
 
-# handle other messages
-@bot.message_handler(func=lambda message: message.chat.id not in user_data)
-def handle_other_messages(message):
-    chat_id = message.chat.id
-    user_message = message.text
-    loader_message = bot.send_message(chat_id, "Processing your request, please wait...")
-    # Get a response from Gemini AI
-    gemini_response = get_gemini_response(user_message)
-    # Send the Gemini AI response back to the user
-    bot.send_message(chat_id, gemini_response)
-    bot.delete_message(chat_id,loader_message.id)
+# # handle other messages
+# @bot.message_handler(func=lambda message: message.chat.id not in user_data)
+# def handle_other_messages(message):
+#     chat_id = message.chat.id
+#     user_message = message.text
+#     loader_message = bot.send_message(chat_id, "Processing your request, please wait...")
+#     # Get a response from Gemini AI
+#     gemini_response = get_gemini_response(user_message)
+#     # Send the Gemini AI response back to the user
+#     bot.send_message(chat_id, gemini_response)
+#     bot.delete_message(chat_id,loader_message.id)
