@@ -1,9 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-
-from db import Insert
-from db import Select
-from bot.commands import location
 # from db import Drop
 # from db import Create
 from .db import Insert
