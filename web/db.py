@@ -44,8 +44,12 @@ class Select:
     def select():
         con = sqlite3.connect(".\database\database.db")
         # Here we can use SELECT or BETWEEN statemet to find the price that the user want? 
+<<<<<<< HEAD:db.py
         get_from_table = con.execute("SELECT PRICE,DESCRIPTION,URL,IMAGES,DATE from SCRAP GROUP BY DATE ORDER BY DATE DESC")
 
+=======
+        get_from_table = con.execute("SELECT PRICE,DESCRIPTION,URL,IMAGES,DATE from SCRAP")
+>>>>>>> f1b23b6eaecb9e6be4be71ae17a674f76a398e33:web/db.py
         for row in get_from_table:
             # print("PRICE = ", row[0])
             # print("DESCRIPTION = ",row[1])
