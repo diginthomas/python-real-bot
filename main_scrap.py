@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from db import Insert
 from db import Select
 import time
+import DataList
 # from db import Drop
 # from db import Create
 
@@ -15,6 +16,7 @@ response = requests.get(url)
 # Check if request was successful
 if response.status_code == 200:
     soup = BeautifulSoup(response.content, 'xml')
+    # list<DataList> data
 
     # Example of how to search for house listings (you'll need to inspect the site to get the right tags/classes)
     listings_price = soup.find_all("p", {"data-testid": "listing-price"})  # This might vary based on actual HTML
@@ -22,8 +24,8 @@ if response.status_code == 200:
     listings_description = soup.find_all("a", {"class":"sc-24a49435-0 eocwml"})
     listings_image = soup.find_all("img",{"data-testid":"listing-card-image"})
 
-    # insert = Insert(listings_price,listings_description,listings_url,listings_image)
-    # insert.insert()
+    insert = Insert(listings_price,listings_description,listings_url,listings_image)
+    insert.insert()
     
     select = Select
     select.select()
