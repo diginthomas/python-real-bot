@@ -5,13 +5,20 @@ from bs4 import BeautifulSoup
 from .db import Insert
 from .db import Select
 class Main:
-    def __init__(self,location,budget):
+    # dictionary to map the province and the kijiji code
+    provinceDict = {"canada":"l0","ontario":"l9004","british-columbia":"l9007","alberta":"l9003","quebec":"l9001","saskatchewan":"l9009","nova-scotia":"l9002","new-brunswick":"l9005","manitoba":"l9006","prince-edward-island":"l9011","newfoundland":"l9008",}
+
+    def __init__(self,location,budget,city):
         self.location = location
         self.budget = budget
-        # URL to scrape (you may need to update this)
-    def findList(self):
-        url = "https://www.kijiji.ca/b-house-for-sale/{self.location}/c35l1700276?sort=dateDesc&radius=5.0&price=0__{self.budget}address={self.location}"
+        self.city = city
 
+    def findList(self):
+        lowerLocationValue = self.location.lower().replace(" ","-")
+        kijiji_code = Main.provinceDict.get(lowerLocationValue, "l0")
+        url = f"https://www.kijiji.ca/b-for-sale/{lowerLocationValue}/c30353001{kijiji_code}?sort=dateDesc"
+
+        print(f"-------------------->{url}")
         # Send a GET request to the website
         response = requests.get(url)
 
@@ -28,7 +35,7 @@ class Main:
 
             # print(listings_description,listings_image,listings_location,listings_price,listings_url)
 
-            insert = Insert(listings_price,listings_location,listings_description,listings_url,listings_image,self.location,self.budget)
+            insert = Insert(listings_price,listings_location,listings_description,listings_url,listings_image,self.location,self.budget,self.city)
             insert.insert()
             
             select = Select

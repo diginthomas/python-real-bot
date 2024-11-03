@@ -39,26 +39,39 @@ def handle_user_input(message):
         user_info['location'] = message.text
         bot.send_message(chat_id, "Enter your budget:")
         user_info['step'] = 'budget'
-        main = Main(user_data[6461380860]['location'],user_data[6461380860]['step'])
-        main.findList()
 
     elif user_info['step'] == 'budget':
         # Save the budget and perform the search
         user_info['budget'] = message.text
-        location = user_info['location']
-        budget = user_info['budget']
-        loader_message = bot.send_message(chat_id, "Processing your request, please wait...")
-        # Perform the search using the provided location and budget
-        data = 'find listing of houses in'+ location+ 'under' +budget+'cad'
-        search_results = get_gemini_response(data)
-        # use below function for web scrap
-        # search_results = search_with_location_and_budget(location=location, budget=budget)
-        bot.delete_message(chat_id,loader_message.id)
 
-        if search_results:
-            bot.send_message(chat_id, search_results)
-        else:
-            bot.send_message(chat_id, "No data found.")
+        bot.send_message(chat_id, "Enter your city:")
+        user_info['step'] = 'city'
+        # location = user_info['location']
+        # budget = user_info['budget']
+        # loader_message = bot.send_message(chat_id, "Processing your request, please wait...")
+        # # Perform the search using the provided location and budget
+        # data = 'find listing of houses in'+ location+ 'under' +budget+'cad'
+
+
+
+        # search_results = get_gemini_response(data)
+        # # use below function for web scrap
+        # # search_results = search_with_location_and_budget(location=location, budget=budget)
+        # bot.delete_message(chat_id,loader_message.id)
+    
+    elif user_info['step'] == 'city':
+        # Save the budget and perform the search
+        user_info['city'] = message.text
+
+        print(user_data)
+
+        main = Main(user_data[chat_id]['location'],user_data[chat_id]['budget'],user_data[chat_id]['city'])
+        main.findList()
+
+        # if search_results:
+        #     bot.send_message(chat_id, search_results)
+        # else:
+        #     bot.send_message(chat_id, "No data found.")
 
         # Reset the user state
         user_data.pop(chat_id)
