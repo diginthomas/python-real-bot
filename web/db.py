@@ -61,4 +61,14 @@ class Select:
             print("IMAGES = ",row[4])
             print("DATE = ",row[5])
             print("")
+
+            PRICE = row[0] 
+            LOCATION = row[1]
+            DESCRIPTION = row[2]
+            URL = row[3]
+            IMAGES = row[4]
+            DATE = row[5]
+
+            return f"Price: {PRICE}\nLocation: {LOCATION}\nDescription: {DESCRIPTION}\nURL: {URL}\nIMAGES: {IMAGES}\nDATE: {DATE}"
+            
         con.close

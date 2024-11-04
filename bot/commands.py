@@ -3,6 +3,7 @@ from .common import bot
 from web.search import search_with_location_and_budget
 from .gemini import get_gemini_response
 from web.main_scrap import Main
+from web.db import Select
 
 
 # Dictionary to keep track of user state
@@ -75,6 +76,9 @@ def handle_user_input(message):
 
         # Reset the user state
         user_data.pop(chat_id)
+        select = Select
+        bot.send_message(chat_id, select.select())
+
 
 # # handle other messages
 # @bot.message_handler(func=lambda message: message.chat.id not in user_data)

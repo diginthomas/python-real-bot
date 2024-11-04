@@ -16,7 +16,7 @@ class Main:
     def findList(self):
         lowerLocationValue = self.location.lower().replace(" ","-")
         kijiji_code = Main.provinceDict.get(lowerLocationValue, "l0")
-        url = f"https://www.kijiji.ca/b-for-sale/{lowerLocationValue}/c30353001{kijiji_code}?sort=dateDesc"
+        url = f"https://www.kijiji.ca/b-for-sale/{lowerLocationValue}/c30353001{kijiji_code}?sort=dateDesc&price=0__{self.budget}"
 
         print(f"-------------------->{url}")
         # Send a GET request to the website
