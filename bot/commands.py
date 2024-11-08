@@ -24,7 +24,7 @@ def handle_start(message):
 @bot.message_handler(commands=['search'])
 def handle_search(message):
     chat_id = message.chat.id
-    bot.send_message(chat_id, "Enter your desired location:")
+    bot.send_message(chat_id, "Enter your desired Province:")
     
     # Initialize user state to capture location first
     user_data[chat_id] = {'step': 'location'}
@@ -45,7 +45,7 @@ def handle_user_input(message):
         # Save the budget and perform the search
         user_info['budget'] = message.text
 
-        bot.send_message(chat_id, "Enter your city:")
+        bot.send_message(chat_id, "Enter your desired city:")
         user_info['step'] = 'city'
         # location = user_info['location']
         # budget = user_info['budget']
@@ -69,6 +69,8 @@ def handle_user_input(message):
         main = Main(user_data[chat_id]['location'],user_data[chat_id]['budget'],user_data[chat_id]['city'])
         main.findList()
 
+            
+
         # if search_results:
         #     bot.send_message(chat_id, search_results)
         # else:
@@ -77,7 +79,8 @@ def handle_user_input(message):
         # Reset the user state
         user_data.pop(chat_id)
         select = Select
-        bot.send_message(chat_id, select.select())
+        for item in select.select():
+            bot.send_message(chat_id, item)
 
 
 # # handle other messages

@@ -14,7 +14,9 @@ class Main:
         self.city = city
 
     def findList(self):
+        # the word will be low case and all the spaces will be replaced by '_'
         lowerLocationValue = self.location.lower().replace(" ","-")
+        #from class Main will get the provinceDict dictionary value of the key lowerLocationValue. The default value if none was found will be l0, which is canada
         kijiji_code = Main.provinceDict.get(lowerLocationValue, "l0")
         url = f"https://www.kijiji.ca/b-for-sale/{lowerLocationValue}/c30353001{kijiji_code}?sort=dateDesc&price=0__{self.budget}"
 
