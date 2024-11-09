@@ -47,18 +47,7 @@ def handle_user_input(message):
 
         bot.send_message(chat_id, "Enter your desired city:")
         user_info['step'] = 'city'
-        # location = user_info['location']
-        # budget = user_info['budget']
-        # loader_message = bot.send_message(chat_id, "Processing your request, please wait...")
-        # # Perform the search using the provided location and budget
-        # data = 'find listing of houses in'+ location+ 'under' +budget+'cad'
 
-
-
-        # search_results = get_gemini_response(data)
-        # # use below function for web scrap
-        # # search_results = search_with_location_and_budget(location=location, budget=budget)
-        # bot.delete_message(chat_id,loader_message.id)
     
     elif user_info['step'] == 'city':
         # Save the budget and perform the search
@@ -69,28 +58,8 @@ def handle_user_input(message):
         main = Main(user_data[chat_id]['location'],user_data[chat_id]['budget'],user_data[chat_id]['city'])
         main.findList()
 
-            
-
-        # if search_results:
-        #     bot.send_message(chat_id, search_results)
-        # else:
-        #     bot.send_message(chat_id, "No data found.")
-
         # Reset the user state
         user_data.pop(chat_id)
         select = Select
         for item in select.select():
             bot.send_message(chat_id, item)
-
-
-# # handle other messages
-# @bot.message_handler(func=lambda message: message.chat.id not in user_data)
-# def handle_other_messages(message):
-#     chat_id = message.chat.id
-#     user_message = message.text
-#     loader_message = bot.send_message(chat_id, "Processing your request, please wait...")
-#     # Get a response from Gemini AI
-#     gemini_response = get_gemini_response(user_message)
-#     # Send the Gemini AI response back to the user
-#     bot.send_message(chat_id, gemini_response)
-#     bot.delete_message(chat_id,loader_message.id)

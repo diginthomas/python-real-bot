@@ -1,5 +1,3 @@
-# add commands 
-# bot/main.py
 from .common import bot
 from .commands import *
 def runBot():

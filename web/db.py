@@ -26,30 +26,6 @@ class Insert:
         con.commit()
         con.close()
 
-class Drop:
-    def __init__(self,table):
-        self.table = table
-    def drop(self):
-        con = sqlite3.connect(".\web\database\database.db")
-        con.execute("""DROP TABLE SCRAP;""")
-        con.commit()
-        con.close()
-
-class Create:
-    def __init__(self,table):
-        self.table = table
-    def create(self):
-        con = sqlite3.connect(".\web\database\database.db")
-        con.execute("""create table ?(
-                    PRICE number(50,2),
-                    LOCATION varchar2(1000),
-                    DESCRIPTION varchar2(1000),
-                    URL varchar2(10000),
-                    IMAGES varchar2(10000),
-                    DATE date);""", (self.table))
-        con.commit()
-        con.close()
-
 class Select:
     def select():
         con = sqlite3.connect(".\web\database\database.db")

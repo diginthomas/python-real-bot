@@ -1,7 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-# from db import Drop
-# from db import Create
 from .db import Insert
 from .db import Select
 class Main:
@@ -43,8 +41,3 @@ class Main:
             select = Select
             select.select()
 
-            # drop = Drop("SCRAP")
-            # drop.drop()
-
-            # create = Create("SCRAP")
-            # create.create()
